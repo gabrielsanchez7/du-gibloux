@@ -1,0 +1,10 @@
+<section id="banner">
+	<article *ngFor="let banner of data.banner, let i = index" class="banner banner-{{i+1}}">
+		<h3>{{banner.text}}</h3>
+		<a href="">{{banner.button}}</a>
+	</article>
+	<div id="dots"></div>
+	<div id="prev" class="direction fa fa-chevron-left"></div>
+	<div id="next" class="direction fa fa-chevron-right"></div>
+	<div id="gobot"><img src="{{resources}}go-bot.png" alt="Go Description"></div>
+</section>

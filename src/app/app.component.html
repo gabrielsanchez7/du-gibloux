@@ -1,3 +1,31 @@
-<h1>
-  {{title}}
-</h1>
+<header>
+	<a [routerLink]="['/']"><img src="{{resourcesImage}}logo-principal.png" alt="Logo Du Gibloux"></a>
+	<ul id="menu-header">
+		<li *ngFor="let menu of data.menu"><a href="{{menu.url}}">{{menu.item}}</a></li>
+	</ul>
+	<div>
+		<ul id="language" (click)="selectLanguage($event);">
+			<li id="fra">FR</li>
+			<li class="divisor">|</li>
+			<li id="esp">ES</li>
+		</ul>
+		<ul id="media">
+			<li><a class="envelope" href=""><i class="fa fa-envelope"></i></a></li>
+			<li><a class="google" href=""><i class="fa fa-google-plus"></i></a></li>
+			<li><a class="facebook" href=""><i class="fa fa-facebook"></i></a></li>
+			<li><a class="youtube" href=""><i class="fa fa-youtube-play"></i></a></li>
+		</ul>
+	</div>
+</header>
+
+<router-outlet></router-outlet>
+
+<footer>
+	<p>Designed by</p>
+	<a href="https://www.facebook.com/AKROS-STUDIO-128480720536551" target="_blank">
+		<img src="{{resourcesImage}}logo-akros.png" alt="Logo Akros Studio">
+	</a>
+	<a href="https://gabrielsanchez7.github.io/pagina-personal/" target="_blank">
+		<img src="../assets/logo-gs.png" alt="Gabriel S&aacute;nchez">
+	</a>
+</footer>
