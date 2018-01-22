@@ -4,21 +4,15 @@ import { DataEspanol } from './dataEspanol';
 
 export class GeneralService {
 
-	public data: any;
+	parseParagraph(paragraph){
+		var parag = $(paragraph).text().split('|');
+		var newParag = '';
+		
+		for(var i = 0; i < parag.length; i++){
+			newParag += '<p>' + parag[i] + '</p>';
+		}
 
-	checkLanguage(){
-		setTimeout(() => {
-			if(this.getLanguage() == 'fra'){
-				this.data = DataFrances;
-			}
-			else if(this.getLanguage() == 'esp'){
-				this.data = DataEspanol;
-			}
-		}, 500);
-	}
-
-	getLanguage(){
-		return localStorage.getItem('language');
+		return newParag;
 	}
 
 }

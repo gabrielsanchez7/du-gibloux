@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ConfigWeb } from '../services/configWeb';
 import { DataFrances } from '../services/dataFrances';
+import { DataEspanol } from '../services/dataEspanol';
 import { Router } from '@angular/router';
 
 @Component({
@@ -20,6 +21,19 @@ export class LoaderComponent {
 
 	ngOnInit(){
 		setTimeout(() => this._router.navigate(['/']), 2000);
+	}
+
+	ngDoCheck(){
+		if(this.getLanguage() == 'fra'){
+			this.data = DataFrances;
+		}
+		else if(this.getLanguage() == 'esp'){
+			this.data = DataEspanol;
+		}
+	}
+
+	getLanguage(){
+		return localStorage.getItem('language');
 	}
 
 }

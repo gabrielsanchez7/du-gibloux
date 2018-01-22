@@ -8,3 +8,190 @@
 	<div id="next" class="direction fa fa-chevron-right"></div>
 	<div id="gobot"><img src="{{resources}}go-bot.png" alt="Go Description"></div>
 </section>
+
+<section id="description">
+	<h3 class="h3">{{data.description.title}}</h3>
+	<div class="container">
+		<img src="{{resources}}descriptif.png" alt="">
+		<p class="dsc">{{data.description.text}}</p>
+	</div>
+	<h5>{{data.description.subtitle}}</h5>
+	<div class="benefit">
+		<ul class="container">
+			<li *ngFor="let item of data.description.benefit">{{item.itemList}}</li>
+		</ul>
+		<p class="container">{{data.description.conclusion}}</p>
+	</div>
+</section>
+
+<section id="appartaments">
+	<h3 class="h3">{{data.appartaments.title}}</h3>
+	<div class="list-appartament container">
+		<article *ngFor="let appartament of data.appartaments.list">
+			<div class="hover"><i class="fa fa-search"></i></div>
+			<img src="{{resources + appartament.image}}" alt="">
+			<div>
+				<h5>{{appartament.lote}}</h5>
+				<p>{{appartament.piso}}</p>
+			</div>
+		</article>
+	</div>
+</section>
+
+<section id="prices">
+	<h3 class="h3">{{data.prices.title}}</h3>
+	<div class="container">
+		<article *ngFor="let price of data.prices.lots">
+			<h5>{{price.letter}}</h5>
+			<p>
+				<span>{{price.floor}}</span>
+				<span>{{data.prices.lotsItem.floor}}</span>
+			</p>
+			<p>
+				<span>{{price.room}}</span>
+				<span>{{data.prices.lotsItem.room}}</span>
+			</p>
+			<p>
+				<span>{{price.habitableSurface}}</span>
+				<span>{{data.prices.lotsItem.habitableSurface}}</span>
+			</p>
+			<p>
+				<span>{{price.balcon}}</span>
+				<span>{{data.prices.lotsItem.balcon}}</span>
+			</p>
+			<p>
+				<span>{{price.jardin}}</span>
+				<span>{{data.prices.lotsItem.jardin}}</span>
+			</p>
+			<p>
+				<span>{{price.store}}</span>
+				<span>{{data.prices.lotsItem.store}}</span>
+			</p>
+			<p>
+				<span>{{price.saleSurface}}</span>
+				<span>{{data.prices.lotsItem.saleSurface}}</span>
+			</p>
+			<p class="sale-price">
+				<span>{{price.salePrice}}</span>
+				<span>{{data.prices.lotsItem.salePrice}}</span>
+			</p>
+		</article>
+	</div>
+</section>
+
+<section id="situation" class="container">
+	<h3 class="h3">{{data.situation.title}}</h3>
+	<div class="city">
+		<p>{{data.situation.description}}</p>
+		<div>
+			<h5>Villorsonnens</h5>
+			<div>
+				<ul>
+					<li><span>1'500 ha</span><span>{{data.situation.city.superficie}}</span></li>
+					<li><span>680 - 1'130 m</span><span>{{data.situation.city.altitude}}</span></li>
+				</ul>
+				<ul>
+					<li><span>1'300 (2012)</span><span>{{data.situation.city.population}}</span></li>
+					<li><span>0,76</span><span>{{data.situation.city.taxRate}}</span></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div>
+		<div class="infraestructures">
+			<h6>{{data.situation.infraestructures.title}}</h6>
+			<p>{{data.situation.infraestructures.description}}</p>
+		</div>
+		<div class="environment">
+			<h6>{{data.situation.environment.title}}</h6>
+			<p>{{data.situation.environment.description}}</p>
+		</div>
+	</div>
+	<div class="conclusion">
+		<div>
+			<ul>
+				<li><span>8km</span><span>{{data.situation.conclusion.info.romont}}</span></li>
+				<li><span>8km</span><span>{{data.situation.conclusion.info.station}}</span></li>
+			</ul>
+			<ul>
+				<li><span>20km</span><span>{{data.situation.conclusion.info.bulle}}</span></li>
+				<li><span>20m</span><span>{{data.situation.conclusion.info.transport}}</span></li>
+			</ul>
+			<ul>
+				<li><span>40km</span><span>{{data.situation.conclusion.info.laussane}}</span></li>
+				<li><span>8km</span><span>{{data.situation.conclusion.info.highway}}</span></li>
+			</ul>
+			<ul>
+				<li><span>400m</span><span>{{data.situation.conclusion.info.commerce}}</span></li>
+				<li><span>400m</span><span>{{data.situation.conclusion.info.schools}}</span></li>
+			</ul>
+		</div>
+		<div>
+			<h6>{{data.situation.conclusion.title}}</h6>
+			<p>{{data.situation.conclusion.description}}</p>
+			<ul>
+				<li *ngFor="let item of data.situation.conclusion.list">{{item}}</li>
+			</ul>
+		</div>
+	</div>
+</section>
+
+<section id="contact">
+	<div class="container">
+		<h3 class="h3">{{data.contact.title}}</h3>
+		<div class="cont-form">
+			<form>
+				<h6>{{data.contact.subtitle}}</h6>
+				<input type="text" placeholder="{{data.contact.form.name}}">
+				<input type="text" placeholder="{{data.contact.form.email}}">
+				<input type="text" placeholder="{{data.contact.form.adress}}">
+				<input type="text" placeholder="{{data.contact.form.location}}">
+				<input type="text" placeholder="{{data.contact.form.phone}}">
+				<textarea rows="4" placeholder="{{data.contact.form.message}}"></textarea>
+				<input type="submit" value="{{data.contact.form.send}}">
+			</form>
+			<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1931.3346738116225!2d7.003633822470396!3d46.706606422763535!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xad121078ab500edd!2sVillargiroud%2C+bif.!5e0!3m2!1ses!2sch!4v1516569132098" frameborder="0"></iframe>
+		</div>
+	</div>
+</section>
+
+<section id="info-contact" class="container">
+	<h4>{{data.infoContact.title}}</h4>
+	<div>
+		<ul>
+			<li>
+				<span>Billy Besnard</span>
+				<span>{{data.infoContact.promoter}}</span>
+			</li>
+			<li>
+				<span>Isabelle Gomes</span>
+				<span>{{data.infoContact.arquitect}}</span>
+			</li>
+			<li>
+				<span>ABAC Design</span>
+				<span>{{data.infoContact.enterprise}}</span>
+			</li>
+			<li>
+				<span>Crédit Suisse</span>
+				<span>{{data.infoContact.financing}}</span>
+			</li>
+		</ul>
+		<div>
+			<h5>{{data.infoContact.subtitle}}</h5>
+			<ul>
+				<li>
+					<span class="fa fa-user"></span>
+					<span>Billy Besnard</span>
+				</li>
+				<li>
+					<span class="fa fa-envelope"></span>
+					<span>info@residencelegibloux.ch</span>
+				</li>
+				<li>
+					<span class="fa fa-phone"></span>
+					<span>+41 78 645 7133</span>
+				</li>
+			</ul>
+		</div>
+	</div>
+</section>

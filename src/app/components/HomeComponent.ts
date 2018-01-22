@@ -2,10 +2,12 @@ import { Component, OnDestroy } from '@angular/core';
 import { ConfigWeb } from '../services/configWeb';
 import { DataFrances } from '../services/dataFrances';
 import { DataEspanol } from '../services/dataEspanol';
+import { GeneralService } from '../services/general';
 
 @Component({
 	selector: 'home',
-	templateUrl: '../views/home.html'
+	templateUrl: '../views/home.html',
+	providers: [GeneralService]
 })
 
 export class HomeComponent implements OnDestroy {
@@ -18,7 +20,7 @@ export class HomeComponent implements OnDestroy {
 	public banner: string;
 	public language: string;
 
-	constructor(){
+	constructor(private _general: GeneralService){
 		this.resources = ConfigWeb.resourcesImage;
 		this.data = DataFrances;
 		this.position = 1;
@@ -52,6 +54,8 @@ export class HomeComponent implements OnDestroy {
 		var ob = this;
 		var functions = function(){
 			ob.handler();
+			ob.parseParag();
+			ob.sizeIframe();
 		};
 		window.setTimeout(functions, 5);
 	}
@@ -65,6 +69,20 @@ export class HomeComponent implements OnDestroy {
 		$('#banner .banner').first().addClass('active');
 		$(this.banner).first().css('zIndex', 1);
 		this.slide = setInterval(() => this.fnSlide(), 5000);
+	}
+
+	parseParag(){
+		var parags = [
+			'#description .dsc',
+			'#situation .city p',
+			'#situation .infraestructures p',
+			'#situation .environment p'
+		];
+
+		for(var i = 0; i < parags.length; i++){
+			var newParag = this._general.parseParagraph(parags[i]);
+			$(parags[i]).html(newParag);
+		}
 	}
 
 	fnSlide(){
@@ -84,6 +102,15 @@ export class HomeComponent implements OnDestroy {
 				this.position = 1;
 			}
 		}
+	}
+
+	sizeIframe(){
+		function fnSize(){
+			var size = $('#contact form').height();
+			$('#contact iframe').attr('height', size);
+		}
+		fnSize();
+		$(window).resize(fnSize);
 	}
 
 }
