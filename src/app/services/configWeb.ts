@@ -1,3 +1,3 @@
 export var ConfigWeb = {
-	resourcesImage: 'http://localhost:4200/assets/'
+	resourcesImage: 'https://gabrielsanchez7.github.io/du-gibloux/assets/'
 }
