@@ -1,5 +1,5 @@
 import { Component, DoCheck } from '@angular/core';
-import { ConfigWeb } from './services/configWeb';
+import { environment } from '../environments/environment';
 import { DataFrances } from './services/dataFrances';
 import { DataEspanol } from './services/dataEspanol';
 import { GeneralService } from './services/general';
@@ -18,7 +18,7 @@ export class AppComponent implements DoCheck {
 	public language: string;
 
 	constructor(private _router: Router, private _general: GeneralService){
-		this.resourcesImage = ConfigWeb.resourcesImage;
+		this.resourcesImage = environment.resourceImage;
 		this.data = DataFrances;
 	}
 

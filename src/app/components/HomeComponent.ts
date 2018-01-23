@@ -1,5 +1,5 @@
 import { Component, OnDestroy } from '@angular/core';
-import { ConfigWeb } from '../services/configWeb';
+import { environment } from '../../environments/environment';
 import { DataFrances } from '../services/dataFrances';
 import { DataEspanol } from '../services/dataEspanol';
 import { GeneralService } from '../services/general';
@@ -21,7 +21,7 @@ export class HomeComponent implements OnDestroy {
 	public language: string;
 
 	constructor(private _general: GeneralService){
-		this.resources = ConfigWeb.resourcesImage;
+		this.resources = environment.resourceImage;
 		this.data = DataFrances;
 		this.position = 1;
 		this.banner = '#banner .banner';

@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+	production: true,
+	resourceImage: 'https://gabrielsanchez7.github.io/du-gibloux/assets/'
 };
