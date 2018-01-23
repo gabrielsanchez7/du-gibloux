@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ConfigWeb } from '../services/configWeb';
+import { environment } from '../../environments/environment';
 import { DataFrances } from '../services/dataFrances';
 import { DataEspanol } from '../services/dataEspanol';
 import { Router } from '@angular/router';
@@ -15,7 +15,7 @@ export class LoaderComponent {
 	public data: any;
 
 	constructor(private _router: Router){
-		this.resources = ConfigWeb.resourcesImage;
+		this.resources = environment.resourceImage;
 		this.data = DataFrances;
 	}
 
