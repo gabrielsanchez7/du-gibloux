@@ -140,15 +140,33 @@
 	<div class="container">
 		<h3 class="h3">{{data.contact.title}}</h3>
 		<div class="cont-form">
-			<form>
+			<form id="form-contact">
 				<h6>{{data.contact.subtitle}}</h6>
-				<input type="text" placeholder="{{data.contact.form.name}}">
-				<input type="text" placeholder="{{data.contact.form.email}}">
-				<input type="text" placeholder="{{data.contact.form.adress}}">
-				<input type="text" placeholder="{{data.contact.form.location}}">
-				<input type="text" placeholder="{{data.contact.form.phone}}">
-				<textarea rows="4" placeholder="{{data.contact.form.message}}"></textarea>
-				<input type="submit" value="{{data.contact.form.send}}">
+				<label for="name">
+					<input id="name" type="text" data-validate="false">
+					<span>{{data.contact.form.name}}</span>
+				</label>
+				<label for="email">
+					<input id="email" type="text" data-validate="false">
+					<span>{{data.contact.form.email}}</span>
+				</label>
+				<label for="address">
+					<input id="address" type="text" data-validate="false">
+					<span>{{data.contact.form.address}}</span>
+				</label>
+				<label for="location">
+					<input id="location" type="text" data-validate="false">
+					<span>{{data.contact.form.location}}</span>
+				</label>
+				<label for="phone">
+					<input id="phone" type="text" data-validate="false">
+					<span>{{data.contact.form.phone}}</span>
+				</label>
+				<label for="message">
+					<textarea id="message" rows="4" data-validate="false"></textarea>
+					<span>{{data.contact.form.message}}</span>
+				</label>
+				<input type="submit" (click)="submitForm()" value="{{data.contact.form.send}}">
 			</form>
 			<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1931.3346738116225!2d7.003633822470396!3d46.706606422763535!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xad121078ab500edd!2sVillargiroud%2C+bif.!5e0!3m2!1ses!2sch!4v1516569132098" frameborder="0"></iframe>
 		</div>
@@ -195,3 +213,8 @@
 		</div>
 	</div>
 </section>
+
+<div id="msg-form">
+	<p class="valid"><span class="fa fa-times" (click)="closeModal($event)"></span>{{data.msgContactForm.valid}}</p>
+	<p class="no-valid"><span class="fa fa-times" (click)="closeModal($event)"></span>{{data.msgContactForm.noValid}}</p>
+</div>

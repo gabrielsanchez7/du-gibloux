@@ -43,13 +43,60 @@ export class AppComponent implements DoCheck {
 
 	selectLanguage($event){
 		var target = $event.target;
+		var object = this;
+
+		if($(target).attr('id') == object.getLanguage()){
+			$('#msg-language p').fadeIn();
+			setTimeout(() => $('#msg-language p').fadeOut(), 5000);
+		}
+		else {
+			this._router.navigate(['/loading']);
+		}
+
 		if($(target).is('#fra')){
 			localStorage.setItem('language', 'fra');
 		}
 		else if($(target).is('#esp')){
 			localStorage.setItem('language', 'esp');
 		}
-		this._router.navigate(['/loading']);
 	}
 
+	closeModal(event){
+		this._general.closeModal(event);
+	}
+
+	goMenu(event){
+		event.preventDefault();
+		var target = event.target;
+		var top;
+		if($(target).text() == "Accueil" || $(target).text() == "Inicio"){
+			top = $('#description').offset().top;
+			$('body, html').animate({scrollTop: (top-65) + 'px'});
+		}
+		else if($(target).text() == "Appartaments" || $(target).text() == "Departamentos"){
+			top = $('#appartaments').offset().top;
+			$('body, html').animate({scrollTop: (top-65) + 'px'});
+		}
+		else if($(target).text() == "Prix" || $(target).text() == "Precios"){
+			top = $('#prices').offset().top;
+			$('body, html').animate({scrollTop: (top-65) + 'px'});
+		}
+		else if($(target).text() == "Situation" || $(target).text() == "Situación"){
+			top = $('#situation').offset().top;
+			$('body, html').animate({scrollTop: (top-65) + 'px'});
+		}
+		else if($(target).text() == "Contact" || $(target).text() == "Contacto"){
+			top = $('#contact').offset().top;
+			$('body, html').animate({scrollTop: (top-65) + 'px'});
+		}
+	}
+
+	showMenuResponsive(){
+		$('#responsive-header').slideToggle();
+	}
+
+	clickMenuResponsive(event){
+		$('#responsive-header').slideUp();
+	}
+	
 }

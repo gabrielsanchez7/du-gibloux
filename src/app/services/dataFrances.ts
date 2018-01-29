@@ -1,5 +1,6 @@
 export var DataFrances = {
 	changeLanguage: 'Attendez un instant, nous traduisons le site',
+	messageLanguage: 'Le site est déjà traduit dans la langue choisie',
 	menu: [
 		{url: "#", item: "Accueil"},
 		{url: "#", item: "Appartaments"},
@@ -132,7 +133,7 @@ export var DataFrances = {
 		form: {
 			name: "Prènom Nom",
 			email: "E-mail",
-			adress: "Adresse",
+			address: "Adresse",
 			location: "NPA, localité",
 			phone: "Telephone",
 			message: "Message",
@@ -146,5 +147,9 @@ export var DataFrances = {
 		enterprise: "Entreprise général",
 		financing: "Financement",
 		subtitle: "Complémentaries"
+	},
+	msgContactForm: {
+		noValid: "Il y a encore des champs obligatoires que vous devez remplir.",
+		valid: "Formulaire envoyé avec succès. Nous prendrons contact avec vous sous peu."
 	}
 }

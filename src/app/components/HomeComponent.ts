@@ -19,12 +19,18 @@ export class HomeComponent implements OnDestroy {
 	public slide;
 	public banner: string;
 	public language: string;
+	public regexName: RegExp;
+	public regexEmail: RegExp;
+	public regexPhone: RegExp;
 
 	constructor(private _general: GeneralService){
 		this.resources = environment.resourceImage;
 		this.data = DataFrances;
 		this.position = 1;
 		this.banner = '#banner .banner';
+		this.regexName = /^([a-zA-ZñÑáéíóúÁÉÍÓÚ ]{2,30})\w+$/i;
+		this.regexEmail = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
+		this.regexPhone = /^[\d+]{9}$/i;
 	}
 	
 	ngOnInit(){
@@ -56,6 +62,8 @@ export class HomeComponent implements OnDestroy {
 			ob.handler();
 			ob.parseParag();
 			ob.sizeIframe();
+			ob.focusInput();
+			ob.validateForm();
 		};
 		window.setTimeout(functions, 5);
 	}
@@ -69,6 +77,7 @@ export class HomeComponent implements OnDestroy {
 		$('#banner .banner').first().addClass('active');
 		$(this.banner).first().css('zIndex', 1);
 		this.slide = setInterval(() => this.fnSlide(), 5000);
+		this._general.scrollMenu();
 	}
 
 	parseParag(){
@@ -113,4 +122,90 @@ export class HomeComponent implements OnDestroy {
 		$(window).resize(fnSize);
 	}
 
+	focusInput(){
+		var form = $('#form-contact input[type="text"], #form-contact textarea');
+		$(form).focusin(function(ev){
+			var target = ev.target;
+			var options = {
+				transform: 'translateY(-25px)',
+				color: '#fff',
+				fontSize: '12px'
+			};
+			$(this).siblings('span').css(options);
+		});
+		$(form).focusout(function(ev){
+			var target = ev.target;
+			if($(target).val() == "") {
+				$(this).siblings('span').removeAttr('style');
+			}
+		});
+	}
+
+	showIcon(input, icon){
+		$('#' + input).siblings('.fa.' + icon).animate({
+			right: 0,
+			opacity: 1
+		}).siblings('.fa').fadeOut().animate({
+			right: '-35px',
+			opacity: 0
+		});
+	}
+
+	fnValidation(input, regex){
+		var object = this;
+		
+		$('#' + input).focusout(() => {
+			if(regex.test($('#' + input).val())){
+				object.showIcon(input, 'fa-check');
+				$('#' + input).attr('data-validate', true);
+			}
+			else {
+				object.showIcon(input, 'fa-times');
+				$('#' + input).attr('data-validate', false);
+			}
+		});
+	}
+	
+	validateForm(){
+		var object = this;
+		var form = $('#form-contact input[type="text"], #form-contact textarea');
+
+		form.after('<i class="fa fa-check"/><i class="fa fa-times"/>');
+		
+		object.fnValidation('name', object.regexName);
+		object.fnValidation('email', object.regexEmail);
+		object.fnValidation('address', object.regexName);
+		object.fnValidation('location', object.regexName);
+		object.fnValidation('phone', object.regexPhone);
+
+		$('#form-contact textarea').focusout(() => {
+			if($('#form-contact textarea').val() == ""){
+				object.showIcon('message', 'fa-times');
+				$('#form-contact textarea').attr('data-validate', false);
+			}
+			else {
+				object.showIcon('message', 'fa-check');
+				$('#form-contact textarea').attr('data-validate', true);
+			}
+		});
+	}
+
+	submitForm(){
+		var valid = $('#form-contact input[data-validate="false"], #form-contact textarea[data-validate="false"]');
+		if(valid.length > 0){
+			$('#msg-form .no-valid').fadeIn();
+		}
+		else {
+			$('#msg-form .valid').fadeIn();
+		}
+
+		setTimeout(() => {
+			$('#msg-form .valid, #msg-form .no-valid').fadeOut();
+		}, 5000);
+	}
+
+	closeModal(ev){
+		this._general.closeModal(ev);
+	}
+	
 }

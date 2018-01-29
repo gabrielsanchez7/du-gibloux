@@ -1,5 +1,6 @@
 export var DataEspanol = {
 	changeLanguage: 'Espere un momento, estamos traduciendo el sitio web',
+	messageLanguage: 'La web ya se encuentra traducida al idioma elegido',
 	menu: [
 		{url: "#", item: "Inicio"},
 		{url: "#", item: "Departamentos"},
@@ -132,7 +133,7 @@ export var DataEspanol = {
 		form: {
 			name: "Nombre y Apellido",
 			email: "E-mail",
-			adress: "Dirección",
+			address: "Dirección",
 			location: "Localidad",
 			phone: "Teléfono",
 			message: "Mensaje",
@@ -146,5 +147,9 @@ export var DataEspanol = {
 		enterprise: "Compañía general",
 		financing: "Financiado por",
 		subtitle: "Complementarios"
+	},
+	msgContactForm: {
+		noValid: "Aún hay campos requeridos que necesitas llenar.",
+		valid: "Formulario enviado exitosamente. Nos pondremos en contacto contigo a la brevedad."
 	}
 }
